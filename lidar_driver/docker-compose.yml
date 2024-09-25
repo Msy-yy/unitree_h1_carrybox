@@ -1,0 +1,34 @@
+# 算法的统一版本
+#property:
+#  algorithm_version: v1
+version: '3.3'
+
+
+services:
+  ros-master:
+    image: ros:melodic-ros-core-bionic
+    container_name: ros-master
+    network_mode: host
+    command: stdbuf -o L roscore
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/map:/home/map
+    environment:
+      - "ROS_IP=127.0.0.1"
+
+  lidar_driver:
+    image: harbor.satorob.com/sator/algorithm_lidar_driver:v2.0.2
+    container_name: lidar_driver
+    network_mode: host
+    restart: always
+    volumes:
+      - /home/nvidia/lidar_driver/livox_ros_driver2/config:/root/lidar_driver2/src/livox_ros_driver2/config
+      - /home/nvidia/lidar_driver/livox_ros_driver2/launch:/root/lidar_driver2/src/livox_ros_driver2/launch
+    depends_on:
+      - ros-master
+    environment:
+      - "ROS_IP=127.0.0.1"
+      - "ROS_MASTER_URI=http://127.0.0.1:11311"
+    command: roslaunch livox_ros_driver2 sator_lidar.launch  --wait
+

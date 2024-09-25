@@ -1,0 +1,34 @@
+world_frame: world
+map_frame: map
+odom_frame: odom
+base_frame: base_link
+front_lidar_frame: livox_frame
+rear_lidar_frame: rear_livox
+scan_topic_front: /livox/lidar
+scan_topic_rear: /lidar_points_raw_rear
+#traj_load_file: $(find cube_localization)/maps/trajectory.pcd
+#map_load_file: $(find cube_localization)/maps/SurfMap.pcd
+local_map_size: [ -70.0, 70.0, -70.0, 70.0, -70.0, 70.0 ]
+sub_map_scan_buf_size: 10
+scan_matcher_type: "ndt"  # ndt or icp
+debug: true
+ndt:
+  num_threads: 2
+  maximum_iterations: 20
+  voxel_leaf_size: 0.5
+  transformation_epsilon: 0.01
+  step_size:  0.2
+  resolution: 1
+  thresh_shift: 1
+  thresh_rot: 0.6
+icp:
+  max_correspondence_distance:  5
+  transformation_epsilon: 1e-6
+  euclidean_fitness_epsilon: 1e-6
+  maximum_iterations: 20
+init_pose_x: 0
+init_pose_y: 0
+init_pose_z: 0
+init_pose_roll: 0.1
+init_pose_pitch: 0.1
+init_pose_yaw: -0.77

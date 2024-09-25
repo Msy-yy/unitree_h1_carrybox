@@ -1,0 +1,29 @@
+<launch>
+<!-- Launch file for Livox Horizon LiDAR -->
+
+	<arg name="rviz" default="true" />
+	<param name="use_sim_time" value="true" />
+	<rosparam command="load" file="$(find fast_lio_sam)/config/mid360.yaml" />
+
+	<param name="feature_extract_enable" type="bool" value="0"/>
+	<param name="point_filter_num_" type="int" value="3"/>
+	<param name="max_iteration" type="int" value="3" />
+	<param name="filter_size_surf" type="double" value="0.5" />
+	<param name="filter_size_map" type="double" value="0.5" />
+	<param name="cube_side_length" type="double" value="1000" />
+	<param name="runtime_pos_log_enable" type="bool" value="0" />
+    <node pkg="qt_map_mark" type="qt_map_mark" name="qt_map_mark" output="screen" /> 
+	<node pkg="fast_lio_sam" type="fastlio_sam_mapping" name="laserMapping" output="screen" /> 
+	<node pkg="fast_lio_sam" type="pointcloud_converter_node" name="pointcloud_converter_front_node" output="screen" >
+		<param name="lidar_topic_sub_name" type="string" value="/livox/lidar" />
+		<param name="lidar_topic_pub_name" type="string" value="/livox/custom_pointcloud" />
+		<param name="frame_id" type="string" value="/livox_frame" />
+	</node>
+	<!-- <node pkg='tf'  type='static_transform_publisher' name='base_link_to_scan' args='0 0 1.5 0 0 3.1415926 /base_link /livox_frame 10' /> -->
+	<node pkg='tf'  type='static_transform_publisher' name='map_to_camera_init' args='0 0 1.5 0 0 3.1415926 /map /camera_init 10' />
+
+    <group if="$(arg rviz)">
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio_sam)/rviz_cfg/loam_livox.rviz" />
+    </group>
+
+</launch>

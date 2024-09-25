@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>qr_code_detector</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="chendongfang.cd@hotmail.com">box</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- Build tool dependency -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Package dependencies -->
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>pcl_ros</depend>
+  <depend>message_filters</depend>
+  <depend>tf</depend>
+  <depend>image_transport</depend>
+
+  <!-- Test dependencies -->
+  <test_depend>rostest</test_depend>
+
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>

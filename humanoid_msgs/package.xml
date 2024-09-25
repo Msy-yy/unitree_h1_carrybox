@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>humanoid_msgs</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="chendongfang@turingvideo.net">box</maintainer>
+  <license>TODO: License declaration</license>
+
+  <!-- Build tool dependency for ROS1 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Runtime dependencies -->
+  <depend>roscpp</depend>
+  <depend>message_runtime</depend>
+  <depend>std_msgs</depend>
+
+  <!-- Test dependencies -->
+  <test_depend>rostest</test_depend>
+  <test_depend>roslint</test_depend>
+
+  <export>
+    <!-- Export build type as catkin -->
+    <build_type>catkin</build_type>
+  </export>
+</package>
+

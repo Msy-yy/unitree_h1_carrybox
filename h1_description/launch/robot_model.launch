@@ -1,0 +1,30 @@
+<launch>
+  <param name="use_sim_time" value="false" />
+  <arg
+    name="model" />
+  <param
+    name="robot_description"
+    textfile="$(find h1_description)/urdf/h1_with_hand.urdf" />
+  <node
+    name="joint_states_pub"
+    pkg="unitree_motion_control"
+    type="joint_states_pub" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <!-- <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find h1_description)/launch/check_joint.rviz" /> -->
+
+  <node pkg="tf"  
+    type="static_transform_publisher" 
+    name="base_link_to_h1" 
+    args="0 0 1.0 0 0 0 /base_link /pelvis 100" />
+  <node pkg="tf"  
+    type="static_transform_publisher" 
+    name="lidar_to_livox" 
+    args="0 0 0 0 0 3.14 /mid360_link /livox_frame 100" />
+</launch>

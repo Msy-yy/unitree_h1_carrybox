@@ -1,0 +1,25 @@
+
+<launch>
+   
+
+<include file="$(find realsense2_camera)/launch/rs_camera.launch">
+       <arg name="align_depth" value="true" />
+       <arg name="enable_color" value="true" />
+       <arg name="enable_depth" value="true" />
+</include>
+
+<include file="$(find livox_ros_driver2)/launch/msg_MID360.launch"/>
+
+<include file="$(find h1_description)/launch/robot_model.launch"/>
+
+<include file="$(find cube_localization)/launch/localization.launch"/>
+
+<node pkg="unitree_motion_control" type="arm_control" name="arm_control" output="screen">
+</node>
+<node pkg="humanoid_bringup" type="pipeline" name="pipeline" output="screen">
+</node>
+<node pkg="unitree_motion_control" type="leg_move" name="leg_move" output="screen">
+</node>
+<!-- <node pkg="unitree_motion_control" type="motion_controller" name="motion_controller" output="screen">
+</node> -->
+</launch>
