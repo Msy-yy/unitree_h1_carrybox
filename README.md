@@ -1,5 +1,8 @@
 # humanoid-demo
 
+##Base on unitree H1 robot
+##Base on unitree sdk2
+
 ## install ros1
    https://wiki.ros.org/noetic/Installation/Ubuntu
 
