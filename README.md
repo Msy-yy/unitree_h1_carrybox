@@ -12,7 +12,7 @@
 ## build this package
     mkdir -p ~/ros_ws/src
     cd ~/ros_ws/src
-    git clone -b ros1 git@github.com:embodyx/humanoid-demo.git
+    git clone -b ros1 https://github.com/Msy-yy/unitree_h1_carrybox.git
     cd ~/ros_ws
     rosdep install --from-paths src --ignore-src -r -y
     catkin_make_isolated --install
